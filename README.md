@@ -12,59 +12,55 @@ docker run --rm \
     laravelsail/php83-composer:latest \
     composer install --ignore-platform-reqs
 ```
+- `cp .env.example .env`
+- `sail build --no-cache`
+- `sail up`
+- `sail artisan key:generate`
+- `sail artisan migrate:fresh --seed` although we are not going to use the DB, but just to make sure everything is working fine
+```
+sail artisan migrate:fresh --seed
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+   INFO  Preparing database.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  Creating migration table ................................................................ 4.30ms DONE
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   INFO  Running migrations.
 
-## Learning Laravel
+  0001_01_01_000000_create_users_table .................................................... 5.66ms DONE
+  2024_09_06_200118_create_personal_access_tokens_table ................................... 4.37ms DONE
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   INFO  Seeding database.
+```
+- `sail artisan route:list --except-vendor` to check all routes
+```
+sail artisan route:list --except-vendor
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+GET|HEAD   / ........................................................................................
+GET|HEAD   api ..................................................... Api\TicTacToeController@getState
+DELETE     api .................................................... Api\TicTacToeController@resetGame
+POST       api/restart .......................................... Api\TicTacToeController@restartGame
+POST       api/{piece} ........................................... Api\TicTacToeController@placePiece
 
-## Laravel Sponsors
+                                                                                     Showing [5] routes
+```
+- `sail test`
+```
+sail test
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   PASS  Tests\Unit\ExampleTest
+  ✓ that true is true
 
-### Premium Partners
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                                                 0.08s
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   PASS  Tests\Feature\TicTacToeTest
+  ✓ get initial state                                                                             0.02s
+  ✓ get session state                                                                             0.01s
+  ✓ place piece                                                                                   0.01s
+  ✓ restart game                                                                                  0.01s
+  ✓ reset game                                                                                    0.01s
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  Tests:    7 passed (17 assertions)
+  Duration: 0.17s
+```
