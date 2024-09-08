@@ -20,14 +20,16 @@ docker run --rm \
 ```
 sail artisan migrate:fresh --seed
 
+  Dropping all tables ................................................ 6.11ms DONE
+
    INFO  Preparing database.
 
-  Creating migration table ................................................................ 4.30ms DONE
+  Creating migration table ........................................... 3.13ms DONE
 
    INFO  Running migrations.
 
-  0001_01_01_000000_create_users_table .................................................... 5.66ms DONE
-  2024_09_06_200118_create_personal_access_tokens_table ................................... 4.37ms DONE
+  0001_01_01_000000_create_users_table ............................... 8.77ms DONE
+  2024_09_06_200118_create_personal_access_tokens_table .............. 4.11ms DONE
 
 
    INFO  Seeding database.
@@ -36,31 +38,31 @@ sail artisan migrate:fresh --seed
 ```
 sail artisan route:list --except-vendor
 
-GET|HEAD   / ........................................................................................
-GET|HEAD   api ..................................................... Api\TicTacToeController@getState
-DELETE     api .................................................... Api\TicTacToeController@resetGame
-POST       api/restart .......................................... Api\TicTacToeController@restartGame
-POST       api/{piece} ........................................... Api\TicTacToeController@placePiece
+  GET|HEAD   / ...................................................................
+  GET|HEAD   api ................................ Api\TicTacToeController@getState
+  DELETE     api ............................... Api\TicTacToeController@resetGame
+  POST       api/restart ..................... Api\TicTacToeController@restartGame
+  POST       api/{piece} ...................... Api\TicTacToeController@placePiece
 
-                                                                                     Showing [5] routes
+                                                                Showing [5] routes
 ```
 - `sail test`
 ```
 sail test
 
    PASS  Tests\Unit\ExampleTest
-  ✓ that true is true
+  ✓ that true is true                                                        0.01s
 
    PASS  Tests\Feature\ExampleTest
-  ✓ the application returns a successful response                                                 0.08s
+  ✓ the application returns a successful response                            0.10s
 
    PASS  Tests\Feature\TicTacToeTest
-  ✓ get initial state                                                                             0.02s
-  ✓ get session state                                                                             0.01s
-  ✓ place piece                                                                                   0.01s
-  ✓ restart game                                                                                  0.01s
-  ✓ reset game                                                                                    0.01s
+  ✓ get initial state                                                        0.02s
+  ✓ get session state                                                        0.01s
+  ✓ place piece                                                              0.01s
+  ✓ restart game                                                             0.01s
+  ✓ reset game                                                               0.01s
 
   Tests:    7 passed (17 assertions)
-  Duration: 0.17s
+  Duration: 0.23s
 ```
